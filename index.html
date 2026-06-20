@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator - Sneha Sah</title>
+<style>
+    body {font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px;}
+  .container {background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 400px; width: 100%; text-align: center;}
+    h1 {color: #667eea; margin-bottom: 20px;}
+    input[type="date"] {width: 100%; padding: 12px; margin: 15px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;}
+    button {background: #667eea; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 16px; cursor: pointer; width: 100%; margin: 10px 0;}
+    button:hover {background: #5568d3;}
+    #result {margin-top: 20px; font-size: 18px; color: #333; font-weight: bold;}
+  .footer {margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 14px; color: #666;}
+  .dh-btn {background: #ff6b6b; text-decoration: none; display: inline-block; margin-top: 10px;}
+  .dh-btn:hover {background: #ee5a5a;}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Age Calculator</h1>
+    <input type="date" id="dob" max="">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div id="result"></div>
+    <div class="footer">
+        <p><b>Name:</b> Sneha Sah</p>
+        <p><b>Email:</b> misssnehasah@gmail.com</p>
+        <a href="https://digitalheroesco.com" target="_blank" class="dh-btn">
+            <button class="dh-btn">Built for Digital Heroes</button>
+        </a>
+    </div>
+</div>
+<script>
+function calculateAge() {
+    const dob = document.getElementById('dob').value;
+    if(!dob) {alert('Please select your Date of Birth'); return;}
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+    if(days < 0) {months--; days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();}
+    if(months < 0) {years--; months += 12;}
+    document.getElementById('result').innerHTML = `You are ${years} Years, ${months} Months, ${days} Days old!`;
+}
+document.getElementById('dob').max = new Date().toISOString().split("T")[0];
+</script>
+</body>
+</html>
